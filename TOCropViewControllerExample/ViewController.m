@@ -121,6 +121,10 @@
         self.image = image;
         TOCropViewController *cropController = [[TOCropViewController alloc] initWithImage:image];
         cropController.delegate = self;
+      cropController.aspectRatio = TOCropViewControllerAspectRatio4x3;
+      cropController.rotateButtonHidden = true;
+      cropController.resetButtonHidden = true;
+      cropController.clampButtonHidden = true;
         [self presentViewController:cropController animated:YES completion:nil];
     }];
 }

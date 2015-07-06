@@ -28,17 +28,6 @@
 #import "UIImage+CropRotate.h"
 #import "TOCroppedImageAttributes.h"
 
-typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatio) {
-    TOCropViewControllerAspectRatioOriginal,
-    TOCropViewControllerAspectRatioSquare,
-    TOCropViewControllerAspectRatio3x2,
-    TOCropViewControllerAspectRatio5x3,
-    TOCropViewControllerAspectRatio4x3,
-    TOCropViewControllerAspectRatio5x4,
-    TOCropViewControllerAspectRatio7x5,
-    TOCropViewControllerAspectRatio16x9
-};
-
 @interface TOCropViewController () <UIActionSheetDelegate, UIViewControllerTransitioningDelegate, TOCropViewDelegate>
 
 @property (nonatomic, readwrite) UIImage *image;
@@ -102,6 +91,15 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatio) {
     self.transitioningDelegate = self;
     
     self.view.backgroundColor = self.cropView.backgroundColor;
+  
+  if (self.aspectRatio) {
+    [self.cropView setAspectLockEnabledWithAspectRatio:[self sizeForAspectRatio:self.aspectRatio] animated:YES];
+  }
+  
+  self.toolbar.rotateButtonHidden = self.rotateButtonHidden;
+  self.toolbar.clampButtonHidden = self.clampButtonHidden;
+  self.toolbar.resetButtonHidden = self.resetButtonHidden;
+  
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -245,6 +243,44 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatio) {
 }
 
 #pragma mark - Aspect Ratio Handling -
+- (CGSize)sizeForAspectRatio:(TOCropViewControllerAspectRatio)aspectRatio {
+  CGSize aspectRatioSize = CGSizeZero;
+  
+  switch (aspectRatio) {
+    case TOCropViewControllerAspectRatioOriginal:
+      aspectRatioSize = CGSizeZero;
+      break;
+    case TOCropViewControllerAspectRatioSquare:
+      aspectRatioSize = CGSizeMake(1.0f, 1.0f);
+      break;
+    case TOCropViewControllerAspectRatio3x2:
+      aspectRatioSize = CGSizeMake(3.0f, 2.0f);
+      break;
+    case TOCropViewControllerAspectRatio5x3:
+      aspectRatioSize = CGSizeMake(5.0f, 3.0f);
+      break;
+    case TOCropViewControllerAspectRatio4x3:
+      aspectRatioSize = CGSizeMake(4.0f, 3.0f);
+      break;
+    case TOCropViewControllerAspectRatio5x4:
+      aspectRatioSize = CGSizeMake(5.0f, 4.0f);
+      break;
+    case TOCropViewControllerAspectRatio7x5:
+      aspectRatioSize = CGSizeMake(7.0f, 5.0f);
+      break;
+    case TOCropViewControllerAspectRatio16x9:
+      aspectRatioSize = CGSizeMake(16.0f, 9.0f);
+      break;
+  }
+  
+  if (self.cropView.cropBoxAspectRatioIsPortrait) {
+    CGFloat width = aspectRatioSize.width;
+    aspectRatioSize.width = aspectRatioSize.height;
+    aspectRatioSize.height = width;
+  }
+  
+  return aspectRatioSize;
+}
 - (void)showAspectRatioDialog
 {
     if (self.cropView.aspectLockEnabled) {

@@ -33,6 +33,7 @@
 
 /* Aspect ratio button settings */
 @property (nonatomic, assign) BOOL clampButtonGlowing;
+@property (nonatomic, assign) BOOL clampButtonHidden;
 @property (nonatomic, readonly) CGRect clampButtonFrame;
 
 /* Disable the rotate button */
@@ -40,6 +41,7 @@
 
 /* Enable the reset button */
 @property (nonatomic, assign) BOOL resetButtonEnabled;
+@property (nonatomic, assign) BOOL resetButtonHidden;
 
 /* Done button frame for popover controllers */
 @property (nonatomic, readonly) CGRect doneButtonFrame;

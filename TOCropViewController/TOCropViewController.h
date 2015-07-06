@@ -24,6 +24,18 @@
 
 @class TOCropViewController;
 
+typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatio) {
+  TOCropViewControllerAspectRatioOriginal,
+  TOCropViewControllerAspectRatioSquare,
+  TOCropViewControllerAspectRatio3x2,
+  TOCropViewControllerAspectRatio5x3,
+  TOCropViewControllerAspectRatio4x3,
+  TOCropViewControllerAspectRatio5x4,
+  TOCropViewControllerAspectRatio7x5,
+  TOCropViewControllerAspectRatio16x9
+};
+
+
 ///------------------------------------------------
 /// @name Delegate
 ///------------------------------------------------
@@ -94,6 +106,14 @@
  If `showActivitySheetOnDone` is true, then you may expliclty set activities that won't appear in the share sheet here.
  */
 @property (nonatomic, strong) NSArray *excludedActivityTypes;
+
+@property (nonatomic) TOCropViewControllerAspectRatio aspectRatio;
+
+@property (nonatomic, assign) BOOL rotateButtonHidden;
+
+@property (nonatomic, assign) BOOL clampButtonHidden;
+
+@property (nonatomic, assign) BOOL resetButtonHidden;
 
 ///------------------------------------------------
 /// @name Object Creation
