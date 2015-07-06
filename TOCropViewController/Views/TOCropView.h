@@ -101,7 +101,7 @@
 /**
  Create a new instance of the crop view with the supplied image
  */
-- (instancetype)initWithImage:(UIImage *)image;
+- (instancetype)initWithImage:(UIImage *)image NS_DESIGNATED_INITIALIZER;
 
 /**
  When performing large size transitions (eg, orientation rotation),

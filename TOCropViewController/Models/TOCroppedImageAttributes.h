@@ -29,6 +29,6 @@
 @property (nonatomic, readonly) CGRect croppedFrame;
 @property (nonatomic, readonly) CGSize originalImageSize;
 
-- (instancetype)initWithCroppedFrame:(CGRect)croppedFrame angle:(NSInteger)angle originalImageSize:(CGSize)originalSize;
+- (instancetype)initWithCroppedFrame:(CGRect)croppedFrame angle:(NSInteger)angle originalImageSize:(CGSize)originalSize NS_DESIGNATED_INITIALIZER;
 
 @end

@@ -28,6 +28,6 @@
 @property (nonatomic, readonly) CGRect cropFrame;
 @property (nonatomic, readonly) NSInteger angle;
 
-- (instancetype)initWithImage:(UIImage *)image cropFrame:(CGRect)cropFrame angle:(NSInteger)angle;
+- (instancetype)initWithImage:(UIImage *)image cropFrame:(CGRect)cropFrame angle:(NSInteger)angle NS_DESIGNATED_INITIALIZER;
 
 @end
