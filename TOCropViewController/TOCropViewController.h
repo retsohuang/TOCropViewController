@@ -35,7 +35,6 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatio) {
   TOCropViewControllerAspectRatio16x9
 };
 
-
 ///------------------------------------------------
 /// @name Delegate
 ///------------------------------------------------
@@ -108,6 +107,8 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatio) {
 @property (nonatomic, strong, nullable) NSArray *excludedActivityTypes;
 
 @property (nonatomic) TOCropViewControllerAspectRatio aspectRatio;
+
+@property (nonatomic, assign) BOOL cropBoxOrientationLock;
 
 @property (nonatomic, assign) BOOL rotateButtonHidden;
 

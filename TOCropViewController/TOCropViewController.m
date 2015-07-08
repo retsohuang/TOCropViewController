@@ -92,10 +92,6 @@
     
     self.view.backgroundColor = self.cropView.backgroundColor;
   
-  if (self.aspectRatio) {
-    [self.cropView setAspectLockEnabledWithAspectRatio:[self sizeForAspectRatio:self.aspectRatio] animated:YES];
-  }
-  
   self.toolbar.rotateButtonHidden = self.rotateButtonHidden;
   self.toolbar.clampButtonHidden = self.clampButtonHidden;
   self.toolbar.resetButtonHidden = self.resetButtonHidden;
@@ -119,6 +115,9 @@
     if (animated && [UIApplication sharedApplication].statusBarHidden == NO) {
         [UIView animateWithDuration:0.3f animations:^{ [self setNeedsStatusBarAppearanceUpdate]; }];
         [self.cropView setGridOverlayHidden:NO animated:YES];
+    }
+    if (self.aspectRatio) {
+      [self.cropView setAspectLockEnabledWithAspectRatio:[self sizeForAspectRatio:self.aspectRatio] animated:YES];
     }
 }
 
@@ -273,7 +272,7 @@
       break;
   }
   
-  if (self.cropView.cropBoxAspectRatioIsPortrait) {
+  if (self.cropView.cropBoxAspectRatioIsPortrait && !self.cropBoxOrientationLock) {
     CGFloat width = aspectRatioSize.width;
     aspectRatioSize.width = aspectRatioSize.height;
     aspectRatioSize.height = width;

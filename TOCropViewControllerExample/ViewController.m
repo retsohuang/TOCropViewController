@@ -125,6 +125,7 @@
       cropController.rotateButtonHidden = true;
       cropController.resetButtonHidden = true;
       cropController.clampButtonHidden = true;
+      cropController.cropBoxOrientationLock = true;
         [self presentViewController:cropController animated:YES completion:nil];
     }];
 }
